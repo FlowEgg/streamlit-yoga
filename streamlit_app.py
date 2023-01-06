@@ -1,14 +1,19 @@
+# --pip install google-auth-oauthlib
 
+#%%
 import streamlit as st
 from google.cloud import firestore
+from google.oauth2 import service_account
 
-# Authenticate to Firestore with the JSON account key.
-db = firestore.Client.from_service_account_json(".\\streamlit\\firestore-key-yogaplayy1.json")
-# import json
-# key_dict = json.loads(st.secrets["textkey"]) #--st.secrets knows to look for a file called .streamlit/secrets.toml
-# creds = service_account.Credentials.from_service_account_info(key_dict)
-# db = firestore.Client(credentials=creds, project="streamlit-reddit")
+# --Authenticate to Firestore with the JSON account key.
+# db = firestore.Client.from_service_account_json(".\\.streamlit\\firestore-key-yogaplayy1.json")
+# --Authenticate to Firestore with toml secret.
+import json
+key_dict = json.loads(st.secrets["textkey"]) #--st.secrets knows to look for a file called .streamlit/secrets.toml
+creds = service_account.Credentials.from_service_account_info(key_dict)
+db = firestore.Client(credentials=creds, project="streamlit-yoga")
 
+#%%
 # Streamlit widgets to let a user create a new post
 title = st.text_input("Post title")
 url = st.text_input("Post url")
