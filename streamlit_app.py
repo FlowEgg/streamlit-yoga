@@ -1,4 +1,6 @@
 # --pip install google-auth-oauthlib
+# --streamlit run .\streamlit_app.py
+
 
 #%%
 import streamlit as st
@@ -16,24 +18,24 @@ db = firestore.Client(credentials=creds)
 #%%
 # Streamlit widgets to let a user create a new post
 title = st.text_input("Post title")
-url = st.text_input("Post url")
+user = st.text_input("Post url")
 submit = st.button("Submit new post")
 
 # Once the user has submitted, upload it to the database
-if title and url and submit:
-	doc_ref = db.collection("posts").document(title)
+if title and user and submit:
+	doc_ref = db.collection("classes").document(title)
 	doc_ref.set({
-		"title": title,
-		"url": url
+		"class": title,
+		"user": user
 	})
 
 # And then render each post, using some light Markdown
-posts_ref = db.collection("posts")
+posts_ref = db.collection("classes")
 for doc in posts_ref.stream():
 	post = doc.to_dict()
-	title = post["title"]
-	url = post["url"]
+	title = post["class"]
+	user = post["user"]
 
 	st.subheader(f"Post: {title}")
-	st.write(f":link: [{url}]({url})")
+	st.write(f":link: [{user}]({user})")
 

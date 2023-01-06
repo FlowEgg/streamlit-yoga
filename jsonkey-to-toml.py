@@ -2,7 +2,7 @@ import toml
 
 output_file = ".streamlit/secrets.toml"
 
-with open("firestore-key-yogaplayy1.json") as json_file:
+with open("./.streamlit/yoga-3f4fd-firebase-adminsdk-2bn3s-fc2970730e.json") as json_file:
     json_text = json_file.read()
 
 config = {"textkey": json_text}
