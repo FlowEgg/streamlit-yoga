@@ -11,7 +11,7 @@ from google.oauth2 import service_account
 import json
 key_dict = json.loads(st.secrets["textkey"]) #--st.secrets knows to look for a file called .streamlit/secrets.toml
 creds = service_account.Credentials.from_service_account_info(key_dict)
-db = firestore.Client(credentials=creds, project="streamlit-yoga")
+db = firestore.Client(credentials=creds)
 
 #%%
 # Streamlit widgets to let a user create a new post
