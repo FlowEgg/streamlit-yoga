@@ -1,4 +1,5 @@
-streamlit
 google-cloud-firestore
 google-auth-oauthlib
-
+dateutil
+streamlit
+streamlit-authenticator
